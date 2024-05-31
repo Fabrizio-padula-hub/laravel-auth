@@ -23,7 +23,7 @@ class ProjectTableSeeder extends Seeder
             $newProject->slug = Str::slug($newProject->name, '-');
             $newProject->client_name = $faker->name();
             $newProject->summary = $faker->text(400);
-            $newProject->save;
+            $newProject->save();
         }
     }
 }

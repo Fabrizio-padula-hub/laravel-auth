@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 use App\Models\Project;
 use Illuminate\Support\Str;
 
-class ProjectTableSeeder extends Seeder
+class ProjectsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,9 +19,9 @@ class ProjectTableSeeder extends Seeder
     {
         for($i = 0; $i < 20; $i++){
             $newProject = new Project();
-            $newProject->name = $faker->company();
+            $newProject->name = $faker->name();
             $newProject->slug = Str::slug($newProject->name, '-');
-            $newProject->client_name = $faker->name();
+            $newProject->client_name = $faker->company();
             $newProject->summary = $faker->text(400);
             $newProject->save();
         }

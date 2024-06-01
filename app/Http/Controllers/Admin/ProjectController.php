@@ -43,6 +43,22 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate(
+            [
+                'name' => 'required|min:5|max:200',
+                'client_name' => 'required|min:5|max:150',
+                'summary'=> 'nullable'
+            ],
+            [
+                'name.required' => 'Campo obbligatorio',
+                'name.min' => 'Minino 5 caratteri',
+                'name.max' => 'Massimo 200 caratteri',
+                'client_name.required' => 'Campo obbligatorio',
+                'client_name.min' => 'Minino 5 caratteri',
+                'client_name.max' => 'Massimo 150 caratteri',
+            ]
+        );
+
         $formData = $request->all();
 
         $newProject = new Project(); 

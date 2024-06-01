@@ -55,7 +55,7 @@
             @csrf
             @method('DELETE')
             
-            <button type="submit" class="btn btn-danger">Elimina</button>
+            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Elimina</button>
         </form>
     </div>
 @endsection

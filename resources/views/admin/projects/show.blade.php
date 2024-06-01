@@ -2,6 +2,12 @@
 
 @section('content')
     <h2>Singolo progetto</h2>
+    {{-- messaggio flash --}}
+    @if (session()->has('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="card">
         {{-- nome progetto --}}

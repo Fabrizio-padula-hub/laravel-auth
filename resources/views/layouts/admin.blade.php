@@ -65,8 +65,6 @@
                                     <i class="fa-solid fa-plus"></i> Crea progetto
                                 </a>
                             </li>
-
-                            
                         </ul>
 
 

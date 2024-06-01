@@ -28,6 +28,9 @@
                         <div>
                             <a href="{{ route('admin.projects.show', ['project' => $project->id])}}">Info</a>
                         </div>
+                        <div>
+                            <a href="{{ route('admin.projects.edit', ['project' => $project->id])}}">Modifica</a>
+                        </div>
                     </td>
                 </tr>
             @endforeach

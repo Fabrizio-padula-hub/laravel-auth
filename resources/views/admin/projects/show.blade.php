@@ -47,4 +47,15 @@
             </li>
         </ul>
     </div>
+
+
+    <div class="d-flex align-items-center">
+        <a class="mx-3 btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->id])}}">Modifica</a>
+        <form action="{{ route('admin.projects.destroy', ['project' => $project->id])}}" method="POST">
+            @csrf
+            @method('DELETE')
+            
+            <button type="submit" class="btn btn-danger">Elimina</button>
+        </form>
+    </div>
 @endsection

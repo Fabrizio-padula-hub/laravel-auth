@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -61,6 +62,12 @@ class ProjectController extends Controller
 
         $formData = $request->all();
 
+        if($request->hasFile('cover_image')){
+            $img_path = Storage::disk('public')->put('project_images', $formData['cover_image']);
+            
+            $formData['cover_image'] = $img_path;
+        };
+
         $newProject = new Project(); 
 
         // $newProject->name = $formData['name'];
@@ -73,7 +80,7 @@ class ProjectController extends Controller
 
         session()->flash('success', 'Progetto creato con successo!');
 
-        return redirect()->route('admin.projects.show', ['project' => $newProject->id]);
+        return redirect()->route('admin.projects.show', ['project' => $newProject->slug]);
 
     }
 
@@ -125,7 +132,7 @@ class ProjectController extends Controller
 
         session()->flash('success', 'Progetto modificato con successo!');
 
-        return redirect()->route('admin.projects.show', ['project' => $project->id]);
+        return redirect()->route('admin.projects.show', ['project' => $project->slug]);
     }
 
     /**

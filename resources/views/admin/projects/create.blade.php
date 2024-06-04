@@ -5,7 +5,7 @@
     <h4>Crea il progetto</h4>
     
 
-    <form action="{{ route('admin.projects.store') }}" method="POST">
+    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -23,6 +23,11 @@
         @error('client_name')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
+
+        <div class="mb-3">
+            <label for="cover_image" class="form-label">Immagine</label>
+            <input class="form-control" type="file" id="cover_image" name="cover_image">
+        </div>
 
         <div class="mb-3">
             <label for="summary" class="form-label">Summary</label>

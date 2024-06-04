@@ -14,6 +14,14 @@
         <div class="card-body">
             <h5 class="card-title">{{$project->name}}</h5>
         </div>
+
+        {{-- immagine --}}
+        @if($project->cover_image)
+            <div class="card-body">
+                <img src="{{ asset('storage/' . $project->cover_image )}}" alt="{{$project->name}}">
+            </div>
+        @endif
+        
         {{-- corpo progetto --}}
         <ul class="list-group list-group-flush">
             <li class="list-group-item">

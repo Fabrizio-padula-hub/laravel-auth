@@ -26,17 +26,20 @@
                     <td>{{ $project->created_at }}</td>
                     <td>
                         <div>
-                            <a class="mx-3 btn btn-success" href="{{ route('admin.projects.show', ['project' => $project->id])}}">Info</a>
-                            <a class="mx-3 btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->id])}}">Modifica</a>
+                            {{-- bottone info --}}
+                            <a class="mx-3 btn btn-success" href="{{ route('admin.projects.show', ['project' => $project->slug])}}"><i class="fa-solid fa-circle-info"></i></a>
+                            {{-- bottone modifica --}}
+                            <a class="mx-3 btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->slug])}}"><i class="fa-solid fa-pen-to-square text-light"></i></a>
                         </div>
                     </td>
                     <td>
+                        {{-- bottone elimina --}}
                         <div>
-                            <form action="{{ route('admin.projects.destroy', ['project' => $project->id])}}" method="POST">
+                            <form action="{{ route('admin.projects.destroy', ['project' => $project->slug])}}" method="POST">
                                 @csrf
                                 @method('DELETE')
 
-                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Elimina</button>
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                             </form>
                         </div>
                     </td>

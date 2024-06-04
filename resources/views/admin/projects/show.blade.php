@@ -50,12 +50,14 @@
 
 
     <div class="d-flex align-items-center">
-        <a class="mx-3 btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->id])}}">Modifica</a>
-        <form action="{{ route('admin.projects.destroy', ['project' => $project->id])}}" method="POST">
+        {{-- bottone modifica --}}
+        <a class="mx-3 btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->slug])}}"><i class="fa-solid fa-pen-to-square text-light"></i></a>
+        {{-- bottone elimina --}}
+        <form action="{{ route('admin.projects.destroy', ['project' => $project->slug])}}" method="POST">
             @csrf
             @method('DELETE')
             
-            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Elimina</button>
+            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
         </form>
     </div>
 @endsection

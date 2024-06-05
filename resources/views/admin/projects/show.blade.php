@@ -57,7 +57,7 @@
     </div>
 
 
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center mb-5">
         {{-- bottone modifica --}}
         <a class="mx-3 btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->slug])}}"><i class="fa-solid fa-pen-to-square text-light"></i></a>
         {{-- bottone elimina --}}

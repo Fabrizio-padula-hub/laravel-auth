@@ -4,12 +4,13 @@
 
     <h1>Tutti i progetti</h1>
 
-    <table class="table table-striped">
+    <table class="table table-striped text-center">
         <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Slug</th>
+                <th scope="col">Img</th>
                 <th scope="col">Client Name</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Actions</th>
@@ -22,6 +23,18 @@
                     <td>{{ $project->id }}</td>
                     <td>{{ $project->name }}</td>
                     <td>{{ $project->slug }}</td> 
+                    {{-- se l'immagine è presente mi mostri un icona nella tabella
+                    altrimenti mi mostri una X --}}
+                    @if ($project->cover_image)
+                        <td>
+                            <i class="fa-solid fa-image"></i>
+                        </td>
+                    @else
+                        <td>
+                            <i class="fa-solid fa-ban"></i>
+                        </td>
+                    @endif
+                    
                     <td>{{ $project->client_name }}</td>
                     <td>{{ $project->created_at }}</td>
                     <td>

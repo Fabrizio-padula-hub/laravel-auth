@@ -25,9 +25,12 @@
         @enderror
 
         <div class="mb-3">
-            <label for="cover_image" class="form-label">Immagine</label>
+            <label for="cover_image" class="form-label">Image</label>
             <input class="form-control" type="file" id="cover_image" name="cover_image">
         </div>
+        @error('cover_image')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
         <div class="mb-3">
             <label for="summary" class="form-label">Summary</label>

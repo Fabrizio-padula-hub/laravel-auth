@@ -48,7 +48,8 @@ class ProjectController extends Controller
             [
                 'name' => 'required|min:5|max:200',
                 'client_name' => 'required|min:5|max:150',
-                'summary'=> 'nullable'
+                'summary'=> 'nullable',
+                'cover_image'=> 'nullable|image|max:512'
             ],
             [
                 'name.required' => 'Campo obbligatorio',
@@ -57,6 +58,7 @@ class ProjectController extends Controller
                 'client_name.required' => 'Campo obbligatorio',
                 'client_name.min' => 'Minino 5 caratteri',
                 'client_name.max' => 'Massimo 150 caratteri',
+                'cover_image.image'=> 'Il file deve essere un\'immagine (jpg, jpeg, png, bmp, gif, svg o webp).'
             ]
         );
 
@@ -112,6 +114,7 @@ class ProjectController extends Controller
             'project' => $project
         ];
 
+
         return view('admin.projects.edit', $data);
     }
 
@@ -124,7 +127,35 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $validated = $request->validate(
+            [
+                'name' => 'required|min:5|max:200',
+                'client_name' => 'required|min:5|max:150',
+                'summary'=> 'nullable',
+                'cover_image'=> 'nullable|image|max:512'
+            ],
+            [
+                'name.required' => 'Campo obbligatorio',
+                'name.min' => 'Minino 5 caratteri',
+                'name.max' => 'Massimo 200 caratteri',
+                'client_name.required' => 'Campo obbligatorio',
+                'client_name.min' => 'Minino 5 caratteri',
+                'client_name.max' => 'Massimo 150 caratteri',
+                'cover_image.image'=> 'Il file deve essere un\'immagine (jpg, jpeg, png, bmp, gif, svg o webp).'
+            ]
+        );
+        
         $formData = $request->all();
+
+        if($request->hasFile('cover_image')){
+            if($project->cover_image){
+                Storage::delete($project->cover_image);
+            }
+
+            $img_path = Storage::disk('public')->put('project_images', $formData['cover_image']);
+            
+            $formData['cover_image'] = $img_path;
+        };
 
         $project->slug = Str::slug($formData['name'], '-');
         $project->update($formData);
